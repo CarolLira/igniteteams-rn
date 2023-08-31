@@ -4,6 +4,7 @@
 // import * as Styles from './styles';
 
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native'
 import { FlatList } from 'react-native';
 import { GroupCard } from '@components/GroupCard';
 import { Header } from '@components/Header';
@@ -18,9 +19,15 @@ import { Button } from '@components/Button';
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([]);
 
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate('newGroup');
+  }
+
   return (
     <Container>
-      <Header showBackButton />
+      <Header />
       <Highlight
         title="Turmas"
         subtitle="jogue com a sua turma"
@@ -40,6 +47,7 @@ export function Groups() {
       />
       <Button
         title='Criar nova turma'
+        onPress={handleNewGroup}
       />
     </Container>
   );
